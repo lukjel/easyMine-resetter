@@ -1,5 +1,5 @@
 CONFIG_PATH = '/easymine/config'
-VENDOR = 'huncfutSzymijimmy'
+VENDOR = 'huncfutSzimijimmy'
 VERSION = 'test'
 MODEL = 'basic Resetter'
 SUPPORTED_COMMANDS = ["power-on", "power-off"]
