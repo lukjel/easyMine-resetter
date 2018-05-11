@@ -15,7 +15,7 @@ class Identification():
         self.hardwarehash = self.getHardwarehash()
 
     def getHardwarehash(self):
-        return hash = hashlib.sha256(bytearray(str(self.VENDOR + self.VERSION + self.MODEL + self.mac1 + self.mac2 + self.hardwareid), 'utf-8')).hexdigest()
+        return hashlib.sha256(bytearray(str(self.VENDOR + self.VERSION + self.MODEL + self.mac1 + self.mac2 + self.hardwareid), 'utf-8')).hexdigest()
 
     def getInfoJSON(self):
         res = {
