@@ -3,7 +3,7 @@ import hashlib, sys, env
 import json
 
 class Identification():
-    def __init__(self, initialize=True):
+    def __init__(self):
         self.VENDOR = env.VENDOR
         self.VERSION = env.VERSION
         self.MODEL = env.MODEL
@@ -49,10 +49,6 @@ class Identification():
         return '??:??:??:??:??:??'
 
 systemInfo = None
-
-def get():
-    global systemInfo
-    return systemInfo
 
 def getSystemInfo():
     global systemInfo
