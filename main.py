@@ -1,24 +1,39 @@
 from systemInfo import getSystemInfo, initSystemInfo
 from apiRequests import sysBoot, sysinfoUpdate, commandGet, commandUpdate
-# from hardware import pinSetup
+from hardware import pinSetup, powerOn, powerOff
 from interval import Interval
+from httpServer import startServer
 
 def getCommandFromServer():
-    print(commandGet())
+    cmd = commandGet()
+    print(cmd)
+    if cmd['result'] == 'ok':
+        if 'commandId' in cmd:
+            cmdId = cmd['commandId']
+            cmdName = cmd['command']
+            cmdPort = cmd['portNo']
+            if cmdName == 'power-off':
+                powerOff(cmdPort)
+                commandUpdate(cmdId, 'ok', '')
+            elif: cmdName == 'power-on':
+                powerOn(cmdPort)
+                commandUpdate(cmdId, 'ok', '')
+            else:
+                commandUpdate(cmdId, 'fail', 'Unknown command')
+        else:
+            print('No command')
+    else:
+        print('Server error')
+
 
 try:
     print('Starting...')
-    # pinSetup()
+    pinSetup()
     initSystemInfo()
     systemInfo = getSystemInfo()
-    print(systemInfo.getInfoJSON())
     print('Done')
-    # print(sysBoot())
-    # print(sysinfoUpdate())
-    # print(commandGet())
-    # print(commandUpdate('turn-on', 'ok', 'message'))
     Interval(sysBoot()['interval'], getCommandFromServer)
-
+    startServer()
 
 except Exception as e:
     print('Error:')

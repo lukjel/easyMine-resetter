@@ -43,14 +43,22 @@ def commandGet():
     return statusHandler(r)
 
 
-def commandUpdate(command, result, message):
+def commandUpdate(commandId, result, message):
     url = env.URL_BASE + '/v1/controller/command/update'
     sysInfo = getSystemInfo()
     payload = {
         'id': str(sysInfo.hardwarehash),
-        'command': str(command),
+        'commandId': str(commandId),
         'result': str(result),
         'message': str(message)
     }
+    r = requests.post(url, data=json.dumps(payload))
+    return statusHandler(r)
+
+def commandRegister(token):
+    url = env.URL_BASE + '/v1/controller/register'
+    sysInfo = getSystemInfo()
+    payload = sysInfo.getInfoJSON()
+    payload['token'] = token
     r = requests.post(url, data=json.dumps(payload))
     return statusHandler(r)

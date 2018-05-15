@@ -7,7 +7,7 @@ class Interval:
         self.start()
 
     def start(self):
-        Timer(self.interval, self.run)
+        Timer(self.interval, self.run).start()
 
     def run(self):
         self.callback()
