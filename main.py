@@ -33,7 +33,9 @@ try:
     systemInfo = getSystemInfo()
     print('Done')
     Interval(sysBoot()['interval'], getCommandFromServer)
+    print('Start server')
     startServer()
+    print('Finished.')
 
 except Exception as e:
     print('Error:')
