@@ -15,7 +15,7 @@ def getCommandFromServer():
             if cmdName == 'power-off':
                 powerOff(cmdPort)
                 commandUpdate(cmdId, 'ok', '')
-            elif: cmdName == 'power-on':
+            elif cmdName == 'power-on':
                 powerOn(cmdPort)
                 commandUpdate(cmdId, 'ok', '')
             else:
