@@ -7,5 +7,6 @@ if [ ${c} -eq 0 ]
 then
   cd ${s}/..
   git pull
-  python3 main.py 2>&1 > /var/log/resetter.log
+  echo 'Init!' > /var/log/resetter.log
+  python3 main.py > /var/log/resetter.log
 fi
