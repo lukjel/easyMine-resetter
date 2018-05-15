@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import json
+import time
 
 comPins = [17, 18, 27, 22, 23, 24, 25, 4]
 
