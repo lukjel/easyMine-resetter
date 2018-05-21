@@ -7,18 +7,15 @@ from httpServer import startServer
 def getCommandFromServer():
     cmd = commandGet()
     print(cmd)
-    if cmd.get('result', '') == 'ok':
-        if 'commandId' in cmd:
-            cmdId = cmd['commandId']
-            error = cmdHandler(cmdId, cmd.get('command', ''), cmd.get('portNo', ''))
-            if not error:
-                commandUpdate(cmdId, 'ok', '')
-            else:
-                commandUpdate(cmdId, 'fail', 'Unknown command')
+    if 'id' in cmd:
+        cmdId = cmd['id']
+        error = cmdHandler(cmdId, cmd.get('type', ''), cmd.get('line', ''))
+        if not error:
+            commandUpdate(cmdId, 'ok', '')
         else:
-            print('No command')
+            commandUpdate(cmdId, 'fail', 'Unknown command')
     else:
-        print('Server error')
+        print('No command')
 
 
 try:
