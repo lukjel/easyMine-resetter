@@ -7,10 +7,10 @@ from httpServer import startServer
 def getCommandFromServer():
     cmd = commandGet()
     print(cmd)
-    if cmd.get(['result'], '') == 'ok':
+    if cmd.get('result', '') == 'ok':
         if 'commandId' in cmd:
             cmdId = cmd['commandId']
-            error = cmdHandler(cmdId, cmd.get(['command'], ''), cmd.get(['portNo'], ''))
+            error = cmdHandler(cmdId, cmd.get('command', ''), cmd.get('portNo', ''))
             if not error:
                 commandUpdate(cmdId, 'ok', '')
             else:
