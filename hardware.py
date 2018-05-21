@@ -33,10 +33,10 @@ def restart(portNum):
     os.system('shutdown -r now')
 
 cmdEnum = {
-    'power-on': powerOn,
-    'power-off': powerOff,
-    'reset': reset,
-    'restart': restart
+    'device-power-on': powerOn,
+    'device-power-off': powerOff,
+    'device-restart': reset,
+    'controller-upgrade': restart
 }
 
 def cmdHandler(cmdId, cmdName, cmdPort):

@@ -19,12 +19,12 @@ class Identification():
 
     def getInfoJSON(self):
         res = {
-            'ip' : str(self.network.ip_local),
-            'id' : str(self.hardwarehash),
-            'vendor' : str(self.VENDOR),
-            'version' : str(self.VERSION),
-            'model' : str(self.MODEL),
-            'commands' : str(self.SUPPORTED_COMMANDS)
+            'ip': str(self.network.ip_local),
+            'id': str(self.hardwarehash),
+            'vendor': str(self.VENDOR),
+            'version': str(self.VERSION),
+            'model': str(self.MODEL),
+            'commands': self.SUPPORTED_COMMANDS
         }
 
         return json.loads(json.dumps(res))

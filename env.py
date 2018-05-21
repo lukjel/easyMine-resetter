@@ -1,7 +1,7 @@
 VENDOR = 'huncfutSzimijimmy'
 VERSION = 'test'
 MODEL = 'basic Resetter'
-SUPPORTED_COMMANDS = ["power-on", "power-off", "reset", "restart"]
+SUPPORTED_COMMANDS = ["device-power-on", "device-power-off", "device-restart", "controller-upgrade"]
 URL_BASE = 'http://dev-api.easymine.io/api'
 
 RUNTIME_PARAMETERS = {
