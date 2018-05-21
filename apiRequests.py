@@ -18,6 +18,8 @@ def sysBoot():
     sysInfo = getSystemInfo()
     payload = sysInfo.getInfoJSON()
     r = requests.post(url, data=json.dumps(payload))
+    print('sysBoot request')
+    print(json.dumps(payload))
     return statusHandler(r)
 
 

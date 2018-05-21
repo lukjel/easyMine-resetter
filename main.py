@@ -27,7 +27,7 @@ try:
     initSystemInfo()
     systemInfo = getSystemInfo()
     print('Done')
-    Interval(sysBoot()['interval'], getCommandFromServer)
+    Interval(sysBoot().get('interval', 10), getCommandFromServer)
     print('Start server')
     startServer()
     print('Finished.')
