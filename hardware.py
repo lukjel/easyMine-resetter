@@ -29,17 +29,18 @@ def reset(portNum):
     time.sleep(0.5)
     GPIO.output(portPins[portNum], 1)
 
+def restart(portNum):
+    os.system('shutdown -r now')
+
 cmdEnum = {
     'power-on': powerOn,
     'power-off': powerOff,
-    'reset': reset
+    'reset': reset,
+    'restart': restart
 }
 
 def cmdHandler(cmdId, cmdName, cmdPort):
-    if cmdName == 'restart':
-        os.system('sudo shutdown -r now')
-        return 0
-    elif cmdName in cmdEnum:
+    if cmdName in cmdEnum:
         cmdEnum[cmdName](cmdPort)
         return 0
     return 1
