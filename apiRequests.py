@@ -4,7 +4,8 @@ import env
 from systemInfo import getSystemInfo
 
 def statusHandler(response):
-    print(json.loads(response.content.decode('utf-8')))
+    print("statusHandler")
+    print(response.content.decode('utf-8'))
     if response.status_code == 200:
         return json.loads(response.content.decode('utf-8'))
     elif response.status_code == 400:
