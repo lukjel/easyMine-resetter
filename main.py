@@ -1,6 +1,6 @@
 from systemInfo import getSystemInfo, initSystemInfo
 from apiRequests import sysBoot, sysinfoUpdate, commandGet, commandUpdate
-from hardware import pinSetup, powerOn, powerOff
+from hardware import pinSetup, cmdHandler
 from interval import Interval
 from httpServer import startServer
 
@@ -10,16 +10,11 @@ def getCommandFromServer():
     if cmd['result'] == 'ok':
         if 'commandId' in cmd:
             cmdId = cmd['commandId']
-            cmdName = cmd['command']
-            cmdPort = cmd['portNo']
-            if cmdName == 'power-off':
-                powerOff(cmdPort)
-                commandUpdate(cmdId, 'ok', '')
-            elif cmdName == 'power-on':
-                powerOn(cmdPort)
-                commandUpdate(cmdId, 'ok', '')
-            else:
+            error = cmdHandler(cmdId, cmd['command'], cmd['portNo'])
+            if error:
                 commandUpdate(cmdId, 'fail', 'Unknown command')
+            else:
+                commandUpdate(cmdId, 'ok', '')
         else:
             print('No command')
     else:

@@ -1,24 +1,45 @@
-import RPi.GPIO as GPIO
+portPinsimport RPi.GPIO as GPIO
 import json
 import time
+import os
 
-comPins = [17, 18, 27, 22, 23, 24, 25, 4]
+portPins = [17, 18, 27, 22, 23, 24, 25, 4]
 
 def pinSetup():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    for pin in comPins:
+    for pin in portPins:
         GPIO.setup(pin, GPIO.OUT)
         GPIO.output(pin, 1)
 
-def powerOff(compNum):
-    GPIO.output(comPins[compNum], 0)
+def powerOff(portNum):
+    GPIO.output(portPins[portNum], 0)
     time.sleep(8)
-    GPIO.output(comPins[compNum], 1)
+    GPIO.output(portPins[portNum], 1)
 
-def powerOn(compNum):
-    powerOff(compNum)
+def powerOn(portNum):
+    powerOff(portNum)
     time.sleep(0.5)
-    GPIO.output(comPins[compNum], 0)
+    GPIO.output(portPins[portNum], 0)
     time.sleep(0.5)
-    GPIO.output(comPins[compNum], 1)
+    GPIO.output(portPins[portNum], 1)
+
+def reset(portNum):
+    GPIO.output(portPins[portNum], 0)
+    time.sleep(0.5)
+    GPIO.output(portPins[portNum], 1)
+
+cmdEnum = {
+    'power-on': powerOn,
+    'power-off': powerOff,
+    'reset': reset
+}
+
+def cmdHandler(cmdId, cmdName, cmdPort):
+    if cmdName == 'restart':
+        os.system('sudo shutdown -r now')
+        return 0
+    elif cmdName in cmdEnum:
+        cmdEnum[cmdName](cmdPort)
+        return 0
+    return 1
