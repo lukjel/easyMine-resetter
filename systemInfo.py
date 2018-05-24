@@ -7,6 +7,7 @@ class Identification():
         self.VENDOR = env.VENDOR
         self.VERSION = env.VERSION
         self.MODEL = env.MODEL
+        self.LINES = env.LINES
         self.SUPPORTED_COMMANDS = env.SUPPORTED_COMMANDS
         self.network = getNetworkUtil()
         self.mac1 = self.getMac('eth0')
@@ -24,7 +25,8 @@ class Identification():
             'vendor': str(self.VENDOR),
             'version': str(self.VERSION),
             'model': str(self.MODEL),
-            'commands': self.SUPPORTED_COMMANDS
+            'commands': self.SUPPORTED_COMMANDS,
+            'lines': self.LINES
         }
 
         return json.loads(json.dumps(res))
