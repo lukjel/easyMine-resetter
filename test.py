@@ -21,4 +21,7 @@ try:
     pinSetup(0)
     print('Test')
     doPin(0)
-    
+
+except Exception as e:
+    print('Error:')
+    print(e)
